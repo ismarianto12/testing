@@ -14,7 +14,6 @@ class PajakController extends Controller
      */
     public function __construct()
     {
-      
     }
     function index(Request $request)
     {
@@ -33,7 +32,7 @@ class PajakController extends Controller
             } else {
                 return response()->json([
                     'msg' => 'username dan password salah'
-                ],403);
+                ], 403);
             }
         } else {
             return response()->json([
@@ -41,6 +40,34 @@ class PajakController extends Controller
             ], 404);
         }
     }
-   
+
+
+    //test 
+    function test()
+    {
+
+        $curl = curl_init();
+
+        curl_setopt_array($curl, array(
+            CURLOPT_URL => "http://localhost/rest_api/public/pajak",
+            CURLOPT_RETURNTRANSFER => true,
+            CURLOPT_ENCODING => "",
+            CURLOPT_MAXREDIRS => 10,
+            CURLOPT_TIMEOUT => 0,
+            CURLOPT_FOLLOWLOCATION => true,
+            CURLOPT_HTTP_VERSION => CURL_HTTP_VERSION_1_1,
+            CURLOPT_CUSTOMREQUEST => "GET",
+            CURLOPT_POSTFIELDS => "{\r\n    \"username\":\"rian\",\r\n    \"password\":123\r\n}",
+            CURLOPT_HTTPHEADER => array(
+                "Content-Type: application/json"
+            ),
+        ));
+
+        $response = curl_exec($curl);
+
+        curl_close($curl);
+        echo $response;
+    }
+
     //
 }

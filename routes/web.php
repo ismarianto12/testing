@@ -19,5 +19,9 @@ $router->get('/', function () use ($router) {
 });
 
 //route 
-$router->get('pajak', 'PajakController@index');
- 
+
+$router->group(['prefix' => 'pajak'], function () use ($router) {
+    $router->get('/', 'PajakController@index');
+    $router->get('/get_data', 'PajakController@test');
+    
+});
